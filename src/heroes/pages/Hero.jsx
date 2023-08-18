@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router'
 import { getHeroById } from '../helpers';
 
@@ -6,7 +6,9 @@ export const Hero = () => {
     const { id, ...rest } = useParams();
 
     const navigate = useNavigate();
-    const hero = getHeroById(id);
+
+    //UseMemo no es mas que una funcion que lo que hace es disparar la funcion que recibe en el primer argumento, cuando las dependencias cambien
+    const hero = useMemo(() => getHeroById(id), [id]);
 
     const onNavigateBack = () => {
         navigate(-1);
