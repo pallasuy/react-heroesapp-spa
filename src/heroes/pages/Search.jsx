@@ -1,6 +1,29 @@
+import { useLocation, useNavigate } from 'react-router';
+import { useForm } from '../../hooks';
 import { HeroCard } from '../components/';
-
+import queryString from 'query-string'
 export const Search = () => {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const { q = '' } = queryString.parse(location.search);
+
+    const { searchText, onInputChange } = useForm({
+        searchText: ''
+
+    });
+
+    const onSearchSubmit = (event) => {
+        event.preventDefault();
+        const lower = searchText.trim().toLowerCase();
+        if (lower.length <= 0) return;
+
+
+        navigate(`?q=${lower}`);
+
+    }
+
     return (
         <>
             <h1>Search</h1>
@@ -10,13 +33,15 @@ export const Search = () => {
                 <div className="col-4">
                     <h4>Searching</h4>
                     <hr />
-                    <form>
+                    <form onSubmit={onSearchSubmit} >
                         <input
                             className='form-control'
                             type='text'
                             placeholder='Search a Hero'
                             name='searchText'
                             autoComplete='off'
+                            value={searchText}
+                            onChange={onInputChange}
                         />
                         <button className='btn btn-outline-primary mt-1'>
                             Buscar
@@ -35,7 +60,7 @@ export const Search = () => {
                     </div>
 
                     <div className='alert alert-danger'>
-                        No hero with <b>ABC</b>
+                        No hero with <b> {q}</b>
                     </div>
 
                     {/* <HeroCard /> */}
