@@ -18,7 +18,7 @@ export const Navbar = () => {
 
     }
     const { user } = useContext(AuthContext);
-    console.log(user);
+    console.log();
 
     return (
 
