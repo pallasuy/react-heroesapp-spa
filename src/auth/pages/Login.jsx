@@ -16,7 +16,10 @@ export const Login = () => {
 
         login('Gabriel Pallas');
 
-        navigate('/marvel', {
+
+         const lastPath = localStorage.getItem('lastpath') ?? '/marvel';
+
+        navigate(lastPath, {
             replace: true
         });
 
