@@ -4,12 +4,12 @@ import { PublicRoute } from '../../src/router/'
 
 describe('Pruebas sobre <PublicRouter/>', () => {
     test('Debe mostrar el children si no esta autenticado', () => {
-        const contestValue = {
+        const contextValue = {
             logged: false
         }
 
         render(
-            <AuthContext.Provider value={contestValue} >
+            <AuthContext.Provider value={contextValue} >
                 <PublicRoute>
                     <h1>Ruta Pública</h1>
                 </PublicRoute>
