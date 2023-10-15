@@ -63,23 +63,16 @@ export const Search = () => {
                     <h4>Result</h4>
                     <hr />
 
+                    <div className='alert alert-primary animate__animated animate__fadeIn'
+                        style={{ display: showSearch ? '' : 'none' }}>Search a hero</div>
 
-                    {
-
-                        showSearch ? <div className='alert alert-primary animate__animated animate__fadeIn'>Search a hero</div>
-                            : (showError ? (heroes.length === 0) && <div className='alert alert-danger animate__animated animate__fadeIn'> No hero with <b> {q}</b> </div> : '')
-
-                    }
-
-
-
-
-
+                    <div aria-label="alert-danger" className='alert alert-danger animate__animated animate__fadeIn'
+                        style={{ display: showError ? '' : 'none' }}> No hero with <b> {q}</b> </div>
 
                     {
                         heroes.map(
                             hero => (
-                                <HeroCard key={hero.id} {...hero} />
+                                <HeroCard key={hero.id} {...hero} /> 
                             )
                         )
 
